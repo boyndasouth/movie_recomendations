@@ -1,5 +1,7 @@
 # movie_recomendations
 
+Application Name: FlickPicks
+
 A movie recomendation system that recommends users movies based on preferences from a survey. 
 
 So, far, users can simply view movies based on results from their survey and add and remove them from their favorites.
