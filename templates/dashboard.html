@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0f172a;
+    color: white;
+    padding: 40px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.topbar-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+h1 {
+    font-weight: 600;
+}
+
+/* NEW: Primary button (matches your app theme) */
+.primary-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    background: #3b82f6;
+    color: white;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.primary-btn:hover {
+    background: #2563eb;
+}
+
+.logout {
+    background: #ef4444;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+}
+
+.logout:hover {
+    background: #dc2626;
+}
+
+.card {
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 16px;
+    max-width: 500px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <h1>Welcome, {{ user.username }}</h1>
+
+    <div class="topbar-buttons">
+        <a class="logout" href="/logout">Logout</a>
+    </div>
+</div>
+
+<div class="card">
+    <p>This is your dashboard.</p>
+    <p>You can connect this to your movie recommendations next 🎬</p>
+
+    <!-- NEW BUTTON -->
+    <a href="{{ url_for('survey_intro') }}" class="primary-btn">
+        Start Survey 🎬
+    </a>
+</div>
+
+</body>
+</html>

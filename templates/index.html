@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Movie Recommender</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: 'Inter', sans-serif;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    background: linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#000000);
+    background-size:400% 400%;
+    animation: gradientMove 15s ease infinite;
+
+    color:white;
+}
+
+/* animated background */
+@keyframes gradientMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+/* glass container */
+.container{
+    padding:60px 70px;
+    border-radius:20px;
+
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 20px 60px rgba(0,0,0,0.6);
+}
+
+h1{
+    font-size:3rem;
+    margin-bottom:15px;
+    letter-spacing:1px;
+}
+
+p{
+    font-size:1.2rem;
+    color:#d1d1d1;
+    margin-bottom:40px;
+}
+
+/* button style */
+.btn{
+    padding:16px 40px;
+    font-size:18px;
+    text-decoration:none;
+    border-radius:50px;
+
+    background:linear-gradient(135deg,#ff416c,#ff4b2b);
+    color:white;
+
+    transition: all .3s ease;
+    box-shadow:0 0 15px rgba(255,75,43,.6);
+}
+
+/* neon hover effect */
+.btn:hover{
+    transform:translateY(-4px) scale(1.05);
+    box-shadow:
+        0 0 10px #ff4b2b,
+        0 0 30px #ff416c,
+        0 0 60px #ff416c;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎬 FlickPicks </h1>
+<p>Answer a few questions and get a personalized movie recommendation</p>
+
+<a href="{{ url_for('survey') }}" class="btn">Start Survey</a>
+
+</div>
+
+</body>
+</html>

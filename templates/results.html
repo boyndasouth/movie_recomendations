@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Your Recommendation</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background: radial-gradient(circle at top,#141414,#000);
+    color:white;
+}
+
+.navbar{
+    position:fixed;
+    top:0;
+    width:100%;
+    padding:15px 30px;
+    background:rgba(0,0,0,0.7);
+    backdrop-filter:blur(10px);
+    display:flex;
+    justify-content:flex-start;
+    z-index:1000;
+
+    position: relative;
+}
+
+.logo{
+    font-size:20px;
+    font-weight:600;
+    background:linear-gradient(90deg,#ff3c3c,#ff7a18);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.profile {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff3c3c, #ff7a18);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.profile span {
+    color: white;
+}
+
+.profile:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 10px rgba(255,122,24,0.7);
+}
+
+/* header / hero */
+
+.header{
+    text-align:center;
+    padding:120px 20px 60px;
+}
+
+.header h2{
+    font-weight:300;
+    color:#bbb;
+}
+
+.header h1{
+    font-size:48px;
+    margin:10px 0;
+    background:linear-gradient(90deg,#ff3c3c,#ff7a18);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.header p{
+    color:#aaa;
+    margin-top:10px;
+}
+
+/* genre badge */
+
+.badge{
+    display:inline-block;
+    margin-top:15px;
+    padding:8px 16px;
+    border-radius:30px;
+
+    background:rgba(255,60,60,0.15);
+    border:1px solid rgba(255,80,80,.3);
+
+    font-size:13px;
+    color:#ff7a7a;
+}
+
+/* movie grid */
+
+.movies-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:30px;
+    padding:50px;
+}
+
+/* card */
+
+.movie-card{
+    position:relative;
+    border-radius:14px;
+    overflow:hidden;
+
+    background:#1b1b1b;
+    transition:transform .35s ease, box-shadow .35s ease;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.6);
+}
+
+.movie-card:hover{
+    transform:translateY(-10px) scale(1.04);
+    box-shadow:0 25px 60px rgba(0,0,0,.9);
+}
+
+/* poster */
+
+.movie-card img{
+    width:100%;
+    height:330px;
+    object-fit:cover;
+}
+
+/* info */
+
+.movie-info{
+    padding:15px;
+}
+
+.movie-info h3{
+    font-size:17px;
+    margin-bottom:6px;
+}
+
+/* rating */
+
+.rating{
+    color:#ffd700;
+    font-size:14px;
+    margin-bottom:6px;
+}
+
+/* overview */
+
+.overview{
+    font-size:13px;
+    color:#bbb;
+    line-height:1.4;
+    height:60px;
+    overflow:hidden;
+}
+
+/* footer */
+
+.footer{
+    text-align:center;
+    padding:50px;
+}
+
+.footer a{
+    text-decoration:none;
+    color:white;
+    padding:12px 24px;
+    border-radius:30px;
+
+    background:linear-gradient(135deg,#ff3c3c,#ff7a18);
+    transition:all .3s ease;
+
+    box-shadow:0 0 15px rgba(255,80,80,.5);
+}
+
+.footer a:hover{
+    transform:scale(1.05);
+    box-shadow:
+        0 0 15px #ff3c3c,
+        0 0 40px #ff7a18;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.center-logo{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:20px;
+    font-weight:600;
+    background:linear-gradient(90deg,#ff3c3c,#ff7a18);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <a href="{{ url_for('list_page') }}" class="logo">🎬 MyMovies</a>
+    <div class="center-logo">FlickPicks</div>
+
+    <a href="/dashboard" class="profile">
+        <span>{{ user.username[0].upper() }}</span>
+    </a>
+</div>
+
+<div class="header"> 
+    <h2>🎉 Your Recommended Genres</h2> 
+    <h1> 
+        {% for g in genres %} 
+            {{ g }}{% if not loop.last %}, {% endif %} 
+        {% endfor %} 
+    </h1> 
+    
+    <p>Based on your preferences, we think you'll enjoy these 
+        movies</p> 
+        
+    <!-- Multiple genre badges --> 
+    <div> 
+        {% for g in genres %} 
+            <span class="badge">{{ g }}</span> 
+        {% endfor %} 
+    </div> 
+</div>
+
+<div class="movies-container">
+
+{% for movie in movies %}
+<a href="{{ url_for('movie_details', movie_id=movie.id) }}">
+
+<div class="movie-card">
+
+<img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="Poster">
+
+<div class="movie-info">
+<h3>{{ movie.title }}</h3>
+<div class="rating">⭐ {{ movie.vote_average }}/10</div>
+
+<div class="overview">
+{{ movie.overview[:120] }}...
+</div>
+</div>
+
+</div>
+
+</a>
+{% endfor %}
+
+</div>
+
+<div class="footer">
+<a href="{{ url_for('survey') }}">🔄 Take Survey Again</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FlickPicks</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to bottom, #020617, #0f172a);
+    color: white;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #3b82f6;
+}
+
+.nav-links a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #cbd5f5;
+    font-weight: 400;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+/* HERO SECTION */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.hero span {
+    color: #3b82f6;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #94a3b8;
+    margin-bottom: 30px;
+    max-width: 600px;
+}
+
+/* BUTTONS */
+.buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.btn {
+    padding: 14px 24px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-primary {
+    background: #3b82f6;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #2563eb;
+}
+
+.btn-secondary {
+    background: #1e293b;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #334155;
+}
+
+/* FEATURE SECTION */
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 60px 40px;
+    flex-wrap: wrap;
+}
+
+.feature-card {
+    background: #1e293b;
+    padding: 25px;
+    border-radius: 16px;
+    width: 250px;
+    text-align: center;
+}
+
+.feature-card h3 {
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">🎬 FlickPicks</div>
+    <div class="nav-links">
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>Find Your Next <span>Favorite Movie</span></h1>
+    <p>
+        Personalized movie recommendations, curated just for you.
+        Discover, explore, and save your favorite films with FlickPicks.
+    </p>
+
+    <div class="buttons">
+        <a href="/register" class="btn btn-primary">Get Started</a>
+        <a href="/login" class="btn btn-secondary">Login</a>
+    </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features">
+    <div class="feature-card">
+        <h3>🎯 Smart Recommendations</h3>
+        <p>Get movies tailored to your taste and preferences.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>❤️ Save Favorites</h3>
+        <p>Build your personal movie collection easily.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>🎬 Explore Genres</h3>
+        <p>Browse movies across multiple genres instantly.</p>
+    </div>
+</div>
+
+</body>
+</html>

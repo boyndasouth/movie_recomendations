@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Movie Survey</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background: radial-gradient(circle at top,#111,#000);
+    color:white;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+}
+
+/* glass card */
+.container{
+    width:700px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    border:1px solid rgba(255,255,255,0.08);
+    padding:45px;
+    border-radius:20px;
+    box-shadow:0 25px 80px rgba(0,0,0,.7);
+}
+
+/* title */
+h2{
+    text-align:center;
+    margin-bottom:35px;
+    font-weight:600;
+    letter-spacing:.5px;
+}
+
+/* labels */
+label{
+    display:block;
+    margin-top:25px;
+    font-weight:400;
+    color:#ddd;
+}
+
+/* number inputs */
+input[type="number"]{
+    width:100%;
+    margin-top:8px;
+    padding:10px;
+    border-radius:8px;
+    border:none;
+    background:#1e1e1e;
+    color:white;
+    outline:none;
+}
+
+/* slider */
+input[type="range"]{
+    width:100%;
+    margin-top:10px;
+    appearance:none;
+    height:6px;
+    border-radius:5px;
+    background:linear-gradient(90deg,#ff3c3c,#ff8a00);
+}
+
+/* slider knob */
+input[type="range"]::-webkit-slider-thumb{
+    appearance:none;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:white;
+    box-shadow:0 0 10px rgba(255,80,80,.9);
+    cursor:pointer;
+}
+
+/* value text */
+.value-display{
+    font-size:13px;
+    color:#aaa;
+    margin-top:4px;
+}
+
+/* button */
+button{
+    margin-top:40px;
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:40px;
+
+    font-size:16px;
+    font-weight:500;
+
+    color:white;
+    background:linear-gradient(135deg,#ff3c3c,#ff7a18);
+
+    cursor:pointer;
+    transition:all .25s ease;
+
+    box-shadow:0 0 15px rgba(255,80,80,.5);
+}
+
+button:hover{
+    transform:translateY(-3px) scale(1.02);
+    box-shadow:
+        0 0 15px #ff3c3c,
+        0 0 40px #ff7a18;
+}
+
+</style>
+
+<script>
+function updateValue(id,value){
+    document.getElementById(id).innerText=value;
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+<h2>🎥 Movie Preference Survey</h2>
+
+<form method="POST" action="/survey">
+
+<label>Age (13–70)</label>
+<input type="number" name="age" min="13" max="70" required>
+
+<label>How much do you enjoy explosions/action scenes? (0–10)</label>
+<input type="range" name="likes_explosions" min="0" max="10" value="5"
+oninput="updateValue('explosionsVal',this.value)">
+<div class="value-display">Value: <span id="explosionsVal">5</span></div>
+
+<label>How much do you enjoy love stories? (0–10)</label>
+<input type="range" name="likes_romance" min="0" max="10" value="5"
+oninput="updateValue('romanceVal',this.value)">
+<div class="value-display">Value: <span id="romanceVal">5</span></div>
+
+<label>How much do you enjoy horror/scary elements? (0–10)</label>
+<input type="range" name="likes_scary" min="0" max="10" value="5"
+oninput="updateValue('scaryVal',this.value)">
+<div class="value-display">Value: <span id="scaryVal">5</span></div>
+
+<label>How much do you enjoy emotional/deep plots? (0–10)</label>
+<input type="range" name="likes_deep_story" min="0" max="10" value="5"
+oninput="updateValue('deepVal',this.value)">
+<div class="value-display">Value: <span id="deepVal">5</span></div>
+
+<label>How much do you enjoy comedy? (0–10)</label>
+<input type="range" name="likes_humor" min="0" max="10" value="5"
+oninput="updateValue('humorVal',this.value)">
+<div class="value-display">Value: <span id="humorVal">5</span></div>
+
+<label>How much do you enjoy sci-fi/space themes? (0–10)</label>
+<input type="range" name="likes_space" min="0" max="10" value="5"
+oninput="updateValue('spaceVal',this.value)">
+<div class="value-display">Value: <span id="spaceVal">5</span></div>
+
+<label>How much do you enjoy suspense/mystery? (0–10)</label>
+<input type="range" name="likes_mystery" min="0" max="10" value="5"
+oninput="updateValue('mysteryVal',this.value)">
+<div class="value-display">Value: <span id="mysteryVal">5</span></div>
+
+<label>Preferred Movie Length (80–180 minutes)</label>
+<input type="number" name="preferred_length" min="80" max="180" required>
+
+<button type="submit">🎬 Get My Recommendation</button>
+
+</form>
+</div>
+
+</body>
+</html>
